@@ -1,0 +1,10 @@
+.dashboard-wrapper {
+    position: relative;
+    padding-top: 8px;
+
+    .loading {
+        position: absolute;
+        margin-top: -16px;
+        width: 100%;
+    }
+}

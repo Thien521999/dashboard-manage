@@ -1,56 +1,31 @@
+import { AdminLayout } from 'components/Layout';
+import NotFound from 'components/NotFound';
+import { PrivateRoute } from 'components/PrivateRoute';
+import { LoginPage } from 'features/auth/page/LoginPage';
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      <Switch>
+        <Redirect from="/" to="/login" exact />
+
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+
+        <PrivateRoute path="/admin">
+          <AdminLayout />
+        </PrivateRoute>
+
+        <Route path="/login">
+          <NotFound />
+        </Route>
+
+        <Route component={NotFound} />
+      </Switch>
     </div>
   );
 }

@@ -1,0 +1,20 @@
+.list-page-wrapper {
+    position: relative;
+    padding-top: 8px;
+
+    .loading {
+        position: absolute;
+        margin-top: -16px;
+        width: 100%;
+    }
+
+    .title-list-page {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+    }
+
+
+}

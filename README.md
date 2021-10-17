@@ -42,3 +42,27 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+ROUTINGS
+- /admin/students: listing
+- /admin/students/add : add new students to
+- /admin/students/:studentId: update a student
+
+LISTING
+
+- Search by name
+- Filter by city
+- Sort by name, mark
+- Pagination
+
+Student slice state:
+- loading
+- list
+- pagination
+- filter {page:1, limit: 10, ...}
+
+
+ADD/ EDIT
+- React Hook Form v7
+- yup

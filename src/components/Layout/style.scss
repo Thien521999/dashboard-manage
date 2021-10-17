@@ -1,0 +1,22 @@
+.admin_layout-wrapper {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 240px 1fr;
+    grid-template-areas: "header header" "sidebar main";
+
+    min-height: 100vh;
+
+    .header {
+        grid-area:  header;
+    }
+
+    .sidebar {
+        grid-area: sidebar;
+        border-right: 1px solid #e5e5e5;
+    }
+
+    .main {
+        grid-area: main;
+        padding: 16px 24px;
+    }
+}
