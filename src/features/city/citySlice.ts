@@ -3,11 +3,16 @@ import cityApi from 'api/cityApi';
 import { City, ListResponse } from 'models';
 
 export const fetchCityList = createAsyncThunk('city/fetchCityList', async () => {
-  const dataRes:ListResponse<City> = await cityApi.getAll();
-
-  localStorage.setItem('cityList', JSON.stringify(dataRes));
+  try {
+    const dataRes:ListResponse<City> = await cityApi.getAll();
+  
+    localStorage.setItem('cityList', JSON.stringify(dataRes));
+      
+    return dataRes;
+  } catch (error) {
+    console.log("Failed to fetch city list");
     
-  return dataRes;
+  }
 });
 
 const initialState = {

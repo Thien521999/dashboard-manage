@@ -10,7 +10,7 @@ export const LoginPage = () => {
 
   const handleLoginClick = () => {
     localStorage.setItem('access_token', 'abcdefghjjklmno');
-    history.push('/admin');
+    history.push('/admin/dashboard');
   };
 
   return (

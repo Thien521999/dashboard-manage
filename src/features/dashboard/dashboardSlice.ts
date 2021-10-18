@@ -38,30 +38,40 @@ const initialState = {
 export const fetchHighestStudentList = createAsyncThunk(
   'dashboard/fetchHighestStudentList',
   async () => {
-    const params: ListParams = {
-      _page: 1,
-      _limit: 5,
-      _sort: 'mark',
-      _order: 'desc',
-    };
-
-    const dataRes = await studentApi.getAll(params);
-    return dataRes?.data;
+    try {
+      const params: ListParams = {
+        _page: 1,
+        _limit: 5,
+        _sort: 'mark',
+        _order: 'desc',
+      };
+  
+      const dataRes = await studentApi.getAll(params);
+      return dataRes?.data;
+    } catch (error) {
+      console.log("Failed to fetch HighestStudentList");
+      
+    }
   }
 );
 
 export const fetchLowestStudentList = createAsyncThunk(
   'dashboard/fetchLowestStudentList',
   async () => {
-    const params: ListParams = {
-      _page: 1,
-      _limit: 5,
-      _sort: 'mark',
-      _order: 'asc',
-    };
-
-    const dataRes = await studentApi.getAll(params);
-    return dataRes?.data;
+    try {
+      const params: ListParams = {
+        _page: 1,
+        _limit: 5,
+        _sort: 'mark',
+        _order: 'asc',
+      };
+  
+      const dataRes = await studentApi.getAll(params);
+      return dataRes?.data;
+    } catch (error) {
+      console.log('Failed to fetch LowestStudentList');
+      
+    }
   }
 );
 
@@ -81,19 +91,18 @@ export const fetchStatistics = createAsyncThunk('dashboard/fetchStatistics', asy
   const statisticList = responseList.map((x) => x?.pagination?._totalRows);
 
   const [maleCount, femaleCount, highMarkCount, lowMarkCount] = statisticList;
-  
 
-  return {maleCount, femaleCount, highMarkCount, lowMarkCount};
+  return { maleCount, femaleCount, highMarkCount, lowMarkCount };
 });
 
 export const fetchRankingByCityList = createAsyncThunk(
   'dashboard/fetchRankingByCityList',
   async () => {
     // fetch all city
-    const { data: cityList }:ListResponse<City> = await cityApi.getAll();
+    const { data: cityList }: ListResponse<City> = await cityApi.getAll();
 
     // fetch ranking by city
-    const callList = cityList.map((x) => 
+    const callList = cityList.map((x) =>
       studentApi.getAll({
         _page: 1,
         _limit: 5,
@@ -103,15 +112,14 @@ export const fetchRankingByCityList = createAsyncThunk(
       })
     );
 
-    const responseList: Array<ListResponse<Student>> =await Promise.all(callList);
-    
+    const responseList: Array<ListResponse<Student>> = await Promise.all(callList);
 
     const rankingByCityLists: Array<RankingByCity> = responseList.map((x, idx) => ({
-        cityId: cityList[idx].code,
-        cityName: cityList[idx].name,
-        rankingList: x.data
-    }))
-    
+      cityId: cityList[idx].code,
+      cityName: cityList[idx].name,
+      rankingList: x.data,
+    }));
+
     return rankingByCityLists;
   }
 );
@@ -130,7 +138,7 @@ const dashboardSlice = createSlice({
     builder.addCase(fetchStatistics.fulfilled, (state, action: PayloadAction<any>) => {
       state.statistics = action.payload;
     });
-    builder.addCase(fetchRankingByCityList.fulfilled, (state, action: PayloadAction<any>) => {        
+    builder.addCase(fetchRankingByCityList.fulfilled, (state, action: PayloadAction<any>) => {
       state.rankingByCityList = action.payload;
     });
   },

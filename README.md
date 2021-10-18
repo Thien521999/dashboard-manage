@@ -66,3 +66,21 @@ Student slice state:
 ADD/ EDIT
 - React Hook Form v7
 - yup
+
+
+Student Form
+- Mode :Add/Edit
+- Initial values
+- Values
+  -name: Text input
+  -age: Number input
+  -gender: radio options
+  -city: Select
+  -mark: Number input
+- Validations: all required
+  -name: at least two words
+  -age: >= 18
+  -gender: male/female
+  -city: required
+  -mark: 0 ->10
+-Submission: Redirect to student list page after submiting successfully

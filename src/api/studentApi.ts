@@ -7,23 +7,24 @@ const studentApi = {
     return axiosClient.get(url, { params}); 
   },
 
-  getById(id:string):Promise<Student> {
-    const url = `/categories/${id}`;
+  getById(id?:string):Promise<Student> {
+    const url = `/students/${id}`;
     return axiosClient.get(url);
   },
 
   add(data:Student):Promise<Student> {
-    const url = "/categories";
+    const url = "/students";
     return axiosClient.post(url, data);
   },
 
-  update(data:Student):Promise<Student> {
-    const url = `/categories/${data.id}`;
+  // Partial<Student>: co nghia 1 phan thuoc tinh student
+  update(data:Partial<Student>):Promise<Student> {
+    const url = `/students/${data.id}`;
     return axiosClient.patch(url, data); //da so dung patch
   },
 
   remove(id:string):Promise<any> {
-    const url = `/student/${id}`;
+    const url = `/students/${id}`;
     return axiosClient.delete(url);
   },
 };
