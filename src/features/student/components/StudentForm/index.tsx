@@ -54,7 +54,8 @@ const StudentForm = ({ initialValues, onSubmit }: StudentFormProps) => {
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting },
+    // formState: { isSubmitting, errors },
+    formState,
   } = useForm<Student>({
     defaultValues: initialValues,
     resolver: yupResolver(schema),
@@ -81,28 +82,46 @@ const StudentForm = ({ initialValues, onSubmit }: StudentFormProps) => {
   return (
     <Box maxWidth={400}>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
-        <InputField name="name" control={control} label="Full Name" />
+        <InputField name="name" control={control} label="Full Name" formState={formState} />
         <RadioGroupField
           name="gender"
           control={control}
           label="Gender"
+          formState={formState}
           options={[
             { label: 'Male', value: 'male' },
             { label: 'Female', value: 'female' },
           ]}
         />
-        <InputField name="age" control={control} label=" Age" type="number" />
-        <InputField name="mark" control={control} label=" Mark" type="number" />
+        <InputField name="age" control={control} label=" Age" type="number" formState={formState} />
+        <InputField
+          name="mark"
+          control={control}
+          label=" Mark"
+          type="number"
+          formState={formState}
+        />
 
         {Array.isArray(cityOptions) && cityOptions.length > 0 && (
-          <SelectField name="city" control={control} label="City" options={cityOptions} />
+          <SelectField
+            name="city"
+            control={control}
+            label="City"
+            options={cityOptions}
+            formState={formState}
+          />
         )}
 
         {error && <Alert severity="error">{error}</Alert>}
 
         <Box mt={3}>
-          <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>
-            {isSubmitting && <CircularProgress size={16} />} &nbsp; Save
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={formState.isSubmitting}
+          >
+            {formState.isSubmitting && <CircularProgress size={16} />} &nbsp; Save
           </Button>
         </Box>
       </form>
