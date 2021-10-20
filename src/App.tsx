@@ -3,7 +3,7 @@ import NotFound from 'components/NotFound';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { LoginPage } from 'features/auth/page/LoginPage';
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 function App() {
