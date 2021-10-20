@@ -1,16 +1,16 @@
 // libs
+
 import { TextField } from '@mui/material';
 import React, { InputHTMLAttributes } from 'react';
 import { Control, useController } from 'react-hook-form';
 
-// InputHTMLAttributes:  những thuộc tính bên trong input có thể tận dụng dc
-export interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface DatePickerFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   control: Control<any>;
   label?: string;
 }
 
-const InputField = ({ name, control, label, ...inputProps }: InputFieldProps) => {
+const DatePickerField = ({ name, control, label, ...inputProps }: DatePickerFieldProps) => {
   const {
     field: { value, onChange, onBlur, ref },
     fieldState: { invalid, error },
@@ -23,18 +23,21 @@ const InputField = ({ name, control, label, ...inputProps }: InputFieldProps) =>
     <TextField
       fullWidth
       size="small"
-      margin="normal"
-      variant="outlined"
+      id="date"
+      label={label}
+      type="date"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
-      label={label}
       inputProps={inputProps}
       inputRef={ref}
-      error={invalid} //co invalid la co error
+      error={invalid}
       helperText={error?.message}
+      InputLabelProps={{
+        shrink: true,
+      }}
     />
   );
 };
 
-export default InputField;
+export default DatePickerField;

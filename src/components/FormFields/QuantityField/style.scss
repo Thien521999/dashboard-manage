@@ -1,0 +1,33 @@
+.box {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    max-width: 150px;
+    .icon-remove,
+    .icon-add {
+      border: 1px solid #DDDDE3;
+      box-sizing: border-box;
+      border-radius: 4px;
+      margin-right: 4px;
+      padding: 4px;
+      width: 40px;
+      color:  #C4C4CF;
+  
+    }
+    .icon-remove {
+      margin-right: 4px;
+      cursor: pointer;
+    }
+    .icon-add {
+      margin-left: 4px;
+      cursor: pointer;
+    }
+  
+    .MuiOutlinedInput-inputMarginDense {
+      color: #808089;
+    }
+  
+    .MuiOutlinedInput-inputMarginDense:hover {
+      overflow: hidden;
+    }
+  }
