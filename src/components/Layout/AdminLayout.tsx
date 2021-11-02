@@ -8,6 +8,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 // others
 import './style.scss';
+// Tran Hoang Thien
 
 export const AdminLayout = () => {
   return (
