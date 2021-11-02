@@ -8,7 +8,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 // others
 import './style.scss';
-// Tran Hoang Thien
+// Tran Hoang Thien QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
 
 export const AdminLayout = () => {
   return (
